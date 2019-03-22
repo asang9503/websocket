@@ -36,7 +36,7 @@ public class WebSocketController {
     }
 
     @OnClose
-    public void onClose(String username) {
+    public void onClose(@PathParam("username") String username) {
         webSocketMap.remove(username);
         subOnlineCount();
         String msg = username + "退出聊天！当前在线人数为" + getOnlineCount();
