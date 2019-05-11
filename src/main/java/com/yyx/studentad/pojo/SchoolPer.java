@@ -5,6 +5,9 @@ import org.hibernate.validator.constraints.Range;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+/**
+ * @author Nvarchar
+ */
 public class SchoolPer {
     private Integer perId;
 

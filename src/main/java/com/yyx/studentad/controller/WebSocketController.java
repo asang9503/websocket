@@ -36,7 +36,7 @@ public class WebSocketController {
     }
 
     @OnClose
-    public void onClose(String username) {
+    public void onClose(@PathParam("username") String username) {
         webSocketMap.remove(username);
         subOnlineCount();
         String msg = username + "退出聊天！当前在线人数为" + getOnlineCount();
@@ -45,12 +45,12 @@ public class WebSocketController {
     }
 
     @OnMessage
-    public void onMessage(String msg, Session session) {
+    public void onMessage(String msg, Session session, @PathParam("username") String username) {
         if (msg != null && msg != "") {
             logger.info("收到来自用户" + username + "的消息:" + msg);
             char type = msg.charAt(0);
             if (type == ConstantForAllPage.ONE) {
-                sendMsg(msg.replace('1', '"'));
+                sendMsg(msg.replace('1', '"'), username);
             } else {
                 sendMsg(msg.replace('0', '"'));
             }
